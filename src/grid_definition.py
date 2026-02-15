@@ -1,6 +1,6 @@
 import pypsa
 
-def sample_grid(name: str):
+def nonconvergent_sample_grid(name: str):
     grid = pypsa.Network(name=name)
     grid.add(class_name="Bus", name="Bus #1")
     # nominal voltage is 220
@@ -13,6 +13,60 @@ def sample_grid(name: str):
              v_mag_pu_set=1,
              v_mag_pu_min = 0.95,
              v_mag_pu_max = 1.05,
-             x=47.603161,
-             y=-122.331493)
+            #  x=47.603161,
+            #  y=-122.331493
+            )
+    
+    grid.add(class_name="Line",
+             name="Line #1",
+             x = 0.01,
+             r= 0.1,
+             bus0='Bus #1',
+             bus1='HouseHold #2')
+    
+    grid.remove(class_name='Line', name="Line #1")
+    grid.add(class_name='Transformer',
+             name='Transf. #1',
+             bus0='Bus #1',
+             bus1='HouseHold #2',
+             tap_ratio=4.54,
+             x=0.01,
+             r=0.1)
+    
+    grid.add(class_name="Generator",
+             name="Gen #1",
+             bus='Bus #1',
+             p_nom=0.01)
+    
+    grid.add(class_name='Load',
+             name='Load #1',
+             bus='HouseHold #2',
+             p_set=0.095,
+             q_set=0.005)
     return grid
+
+def convergent_grid_sample(name: str):
+    n_buses = 3
+    grid_ok = pypsa.Network(name=name)
+
+    for i in range(n_buses):
+        grid_ok.add("Bus", "My bus {}".format(i),
+                    v_nom=20)
+
+    for i in range(n_buses):
+        grid_ok.add("Line", "My line {}".format(i),
+                    bus0="My bus {}".format(i),
+                    bus1="My bus {}".format((i+1)%n_buses),
+                    x=0.1,
+                    r=0.01)
+
+    grid_ok.add("Generator", "My gen",
+                bus="My bus 0",
+                p_set=100,
+                control="PQ")
+
+    grid_ok.add("Load", "My load",
+                bus="My bus 1",
+                p_set=100,
+                q_set=100)
+    return grid_ok
