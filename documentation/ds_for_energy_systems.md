@@ -60,6 +60,39 @@ Class on youtube by Fabian Neumann: [here](https://www.youtube.com/watch?v=Bqvbd
 
 - There are different ways to simulate PV model output, like the Huld model to estimate PV power output from irradiance and temp in europe
 
+- There is a python package that converts weather data into energy systems data, including land eligibility analysis like atlite
+
+- An interesting idea is the concept of potentials, where for renewable energy systems there is the theoretical potential for an energy project but realistically there needs to be considerations of constraints like land use and zoning (social and political) or cost (economic), etc ![energy potentials](images/energy_potentials.png)
+
+- To make representations of the real world we need to figure out how we represent things. There are two classes of geospatial data:
+    - Raster / Image
+    - Vector data
+
+    - ![raster vs vector](images/raster_vs_vector.png)
+
+- Raster data is very similar to an image, where data is stored as a grid of a values and each pixel represents an areas
+    - values can be continuous or categorical
+    - can be like a photo with spatial information
+    - Typical format is like GeoTIFF
+
+    - ![raster data](images/raster_data.png)
+
+    - examples: surface elevation, weather data, land use categories, etc
+
+- Vector data represent specific features on earths surface
+    - Points, lines, polygons, etc
+    - can represent points, roads, airports, regions etc
+
+- Projections and coordinate reference systems (CRS)
+
+    - Issue: Earth is a globe, but we present everything on 2d surfaces
+    - Need ot project geographical data
+    - ![geospatial](images/geospatial_crs.png)
+    - conformal preserves angles (mercator), equal area preserves area (millweide), equidistant preserves distances (plate carree), compromise balances distortions (robinson)
+
+
+- CORINE (EU) is a land cover inventory for europe, it has land use classification that we can use for planning 
+
 
 https://www.youtube.com/watch?v=c1HyDcuD2zM&list=PL9_USGH2eQEOpSeN9kf-7Q8hfIC7MFa4J&index=2
 

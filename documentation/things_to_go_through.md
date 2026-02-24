@@ -6,6 +6,7 @@
 - https://pypi.org/project/monaco/
 - https://github.com/agoenergy/pypsa-spice
 - https://github.com/PyPSA/pypsa-usa
+- https://github.com/PyPSA/atlite
 
 ## Lectures
 
