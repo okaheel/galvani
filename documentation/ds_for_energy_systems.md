@@ -92,6 +92,12 @@ Class on youtube by Fabian Neumann: [here](https://www.youtube.com/watch?v=Bqvbd
 
 
 - CORINE (EU) is a land cover inventory for europe, it has land use classification that we can use for planning 
+    - LUISA takes CORINE from 100mx100m resolution and tries to enhance it
+
+- Wind farms need proper spacing between turbines to allow replenishment 
+    - Offshore turbines are usually built in water depths of up to 50-60 meters with minimal distances to shore and away from busy commercial shipping lanes
+
+- Datasets can have multiple bands, a band can be the color, year, datatype etc and allows encoding multiple different types of information 
 
 
 https://www.youtube.com/watch?v=c1HyDcuD2zM&list=PL9_USGH2eQEOpSeN9kf-7Q8hfIC7MFa4J&index=2

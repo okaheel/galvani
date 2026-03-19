@@ -1,4 +1,7 @@
 import pypsa
+import streamlit as st
+
+GRID_DEF = "Grid Definition"
 
 def nonconvergent_sample_grid(name: str):
     grid = pypsa.Network(name=name)
@@ -70,3 +73,37 @@ def convergent_grid_sample(name: str):
                 p_set=100,
                 q_set=100)
     return grid_ok
+
+def grid_def_page():
+    st.title("First pypsa project")
+
+    model_list = ["convergent", "nonconvergent"]
+
+    result = st.selectbox("Select model to show and run", options=model_list)
+
+    st.info(f"Running model: {result}")
+
+    if result == "convergent":
+        grid = convergent_grid_sample("Example")
+    else:
+        grid = nonconvergent_sample_grid("Example")
+
+    with st.expander("Sim details"):
+        st.write(grid)
+        st.write(grid.buses)
+
+        st.write(dir(grid))
+        st.write(grid.lines)
+        st.write(grid.transformers)
+        st.write(grid.transformers['tap_ratio'])
+
+        st.write(grid.generators)
+        st.write(grid.loads)
+        
+    st.info("running power flow sim")
+    st.info(grid.pf())
+    st.info("Power flow completed")
+
+    st.write(grid.lines)
+
+    st.write(grid.explore())

@@ -1,37 +1,14 @@
 import streamlit as st
 import pandas as pd
 
-from src.grid_definition import nonconvergent_sample_grid, convergent_grid_sample
+from src.grid_definition import grid_def_page, GRID_DEF
+from src.geospatial_processing import geospatial_processing_page, GEOSPATIAL_PROCESSING
 
-st.title("First pypsa project")
+pages = [GRID_DEF, GEOSPATIAL_PROCESSING]
 
-model_list = ["convergent", "nonconvergent"]
+selected_page = st.selectbox("Select Page", pages)
 
-result = st.selectbox("Select model to show and run", options=model_list)
-
-st.info(f"Running model: {result}")
-
-if result == "convergent":
-    grid = convergent_grid_sample("Example")
-else:
-    grid = nonconvergent_sample_grid("Example")
-
-with st.expander("Sim details"):
-    st.write(grid)
-    st.write(grid.buses)
-
-    st.write(dir(grid))
-    st.write(grid.lines)
-    st.write(grid.transformers)
-    st.write(grid.transformers['tap_ratio'])
-
-    st.write(grid.generators)
-    st.write(grid.loads)
-    
-st.info("running power flow sim")
-st.info(grid.pf())
-st.info("Power flow completed")
-
-st.write(grid.lines)
-
-st.write(grid.explore())
+if selected_page == GRID_DEF:
+    grid_def_page()
+elif selected_page == GEOSPATIAL_PROCESSING:
+    geospatial_processing_page()

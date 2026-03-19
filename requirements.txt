@@ -1,7 +1,13 @@
-pandas
+atlite
+cartopy
+geopandas
 matplotlib
-plotly
+numpy
 openpyxl
-streamlit
 pandapower
+pandas
+plotly
 pypsa
+rasterio
+streamlit
+xarray
